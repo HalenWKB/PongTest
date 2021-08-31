@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Endzone : MonoBehaviour
 {
-    [SerializeField] private PaddleHandler m_paddleRef;
+    [SerializeField] private PaddleHandler m_paddleRef = null;
 
     public void BallHit()
     {

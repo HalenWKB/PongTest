@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallHandler : MonoBehaviour
 {
-    [SerializeField] private Vector3 m_startVelo;
+    [SerializeField] private Vector3 m_startVelo = new Vector3();
     
     private Vector3 m_velocity;
     
