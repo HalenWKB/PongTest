@@ -30,8 +30,11 @@ public class BallHandler : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
+            
+            PaddleHandler paddleHit = hitInfo.collider.GetComponent<PaddleHandler>();
 
-            m_velocity = HelperFunctions.ReflectVectorOnNormal(m_velocity, hitInfo.normal);
+            m_velocity = paddleHit != null ? paddleHit.GetBallBounceVectorFromHit(hitInfo, m_velocity)
+                        : HelperFunctions.ReflectVectorOnNormal(m_velocity, hitInfo.normal);
         }
             
         transform.position += m_velocity * Time.deltaTime;
