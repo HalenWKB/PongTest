@@ -676,7 +676,7 @@ MonoBehaviour:
   m_ballPrefab: {fileID: 4165636542694454827, guid: da5178490a11ca0408e8fdbcb019c611,
     type: 3}
   m_ballSpawn: {fileID: 1262627711}
-  m_scoreToWin: 1
+  m_scoreToWin: 11
   m_announcementText: {fileID: 1714449123}
 --- !u!4 &949631283
 Transform:
