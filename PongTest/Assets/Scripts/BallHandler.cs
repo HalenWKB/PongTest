@@ -22,6 +22,15 @@ public class BallHandler : MonoBehaviour
         if (Physics.BoxCast(transform.position, transform.localScale / 2, m_velocity
             , out hitInfo, Quaternion.identity, m_velocity.magnitude * Time.deltaTime))
         {
+            Endzone endZoneHit = hitInfo.collider.GetComponent<Endzone>();
+
+            if (endZoneHit != null)
+            {
+                endZoneHit.BallHit();
+                Destroy(gameObject);
+                return;
+            }
+            
             m_velocity = m_velocity - 2 * (Vector3.Dot(m_velocity, hitInfo.normal)) * hitInfo.normal;
         }
             
