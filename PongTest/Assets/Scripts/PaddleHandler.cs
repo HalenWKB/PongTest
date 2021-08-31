@@ -9,10 +9,27 @@ public class PaddleHandler : MonoBehaviour
 {
     [SerializeField] private float m_paddleSpeed = 10;
     [SerializeField] private float m_paddleSkewBallMod = 0.5f;
+
+    [SerializeField] private float m_paddleMoveConstraintDist = 5f;
+
+
+    private Vector3 m_startPos;
+    
+    void Start()
+    {
+        m_startPos = transform.position;
+    }
     
     public void MoveInput(bool isLeftInput)
     {
-        transform.position += transform.up * m_paddleSpeed * Time.deltaTime * (isLeftInput ? -1 : 1);
+        float leftMoveMod = m_paddleSpeed * Time.deltaTime * (isLeftInput ? -1 : 1);
+
+        float moveModOutOfBoundsBy =
+            Mathf.Max(0, (m_startPos - (transform.position + transform.up * leftMoveMod)).magnitude - m_paddleMoveConstraintDist);
+
+        leftMoveMod += isLeftInput ? moveModOutOfBoundsBy : -moveModOutOfBoundsBy;
+        
+        transform.position += transform.up * leftMoveMod;
     }
 
 
