@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class BallHandler : MonoBehaviour
 {
-    [SerializeField] private Vector3 m_startVelo = new Vector3();
+    [SerializeField] private float m_serveSpeed = 2;
+    [SerializeField] private float m_serveHitSpeedBoostMod = 2;
+    
+    [SerializeField] private float m_speedUpVal = 1.1f;
     
     private Vector3 m_velocity;
+    private bool serving;
     
-    
-    // Start is called before the first frame update
-    void Start()
+    public void ServeBall(Vector3 direction)
     {
-        m_velocity = m_startVelo;
+        m_velocity = direction * m_serveSpeed;
+        serving = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         RaycastHit hitInfo;
@@ -32,9 +34,13 @@ public class BallHandler : MonoBehaviour
             }
             
             PaddleHandler paddleHit = hitInfo.collider.GetComponent<PaddleHandler>();
-
-            m_velocity = paddleHit != null ? paddleHit.GetBallBounceVectorFromHit(hitInfo, m_velocity)
+            bool hitIsOnPaddle = paddleHit != null;
+            
+            m_velocity = hitIsOnPaddle
+                ? paddleHit.GetBallBounceVectorFromHit(hitInfo, m_velocity) * m_speedUpVal * (serving ? m_serveHitSpeedBoostMod : 1)
                         : HelperFunctions.ReflectVectorOnNormal(m_velocity, hitInfo.normal);
+            
+            serving = serving && !hitIsOnPaddle;
         }
             
         transform.position += m_velocity * Time.deltaTime;

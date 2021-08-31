@@ -14,6 +14,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_announcementText = null;
     
     private BallHandler m_ball;
+    private Player m_server;
     
     public Vector3 GetBallPos()
     {
@@ -27,6 +28,7 @@ public class GameplayManager : MonoBehaviour
     {
         Managers.Instance.GameplaySignIn(this);
         SetPlayersBasedOnGameMode();
+        m_server = m_players[0];
         StartCoroutine( WaitWithTextBeforeAction("Get Ready!",SpawnBall));
     }
 
@@ -61,6 +63,8 @@ public class GameplayManager : MonoBehaviour
             }
         }
 
+        m_server = paddleHit;
+
         if (topScore >= m_scoreToWin) 
             StartCoroutine( WaitWithTextBeforeAction(whoScored + " wins the match!",EndGame, 5));
         else 
@@ -70,6 +74,7 @@ public class GameplayManager : MonoBehaviour
     void SpawnBall()
     {
         m_ball = Instantiate(m_ballPrefab, m_ballSpawn.position, m_ballSpawn.rotation).GetComponent<BallHandler>();
+        m_ball.ServeBall((m_server.GetPaddlePos() - m_ball.transform.position).normalized);
     }
 
     void EndGame()

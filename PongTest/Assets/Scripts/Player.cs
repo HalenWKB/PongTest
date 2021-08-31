@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
 
     public string m_name;
 
+    public Vector3 GetPaddlePos()
+    {
+        return m_paddle.transform.position;
+    }
     
     [Header("Human Input Settings")]
     [SerializeField] private KeyCode m_leftKey = KeyCode.W;
