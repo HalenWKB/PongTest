@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaddleHandler : MonoBehaviour
 {
-    [SerializeField] private float m_paddleSpeed;
+    [SerializeField] private float m_paddleSpeed = 10;
     
     public void MoveInput(bool isLeftInput)
     {
