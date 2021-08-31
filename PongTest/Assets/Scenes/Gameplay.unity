@@ -696,6 +696,7 @@ MonoBehaviour:
   m_ballSpawn: {fileID: 1262627711}
   m_scoreToWin: 11
   m_announcementText: {fileID: 1714449123}
+  m_debugStopBallSpawn: 0
 --- !u!4 &949631283
 Transform:
   m_ObjectHideFlags: 0

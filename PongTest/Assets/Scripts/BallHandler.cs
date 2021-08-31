@@ -1,48 +1,72 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PlayerPaddles;
 using UnityEngine;
 
-public class BallHandler : MonoBehaviour
+namespace MainGameplay
 {
-    [SerializeField] private float m_serveSpeed = 2;
-    [SerializeField] private float m_serveHitSpeedBoostMod = 2;
-    
-    [SerializeField] private float m_speedUpVal = 1.1f;
-    
-    private Vector3 m_velocity;
-    private bool serving;
-    
-    public void ServeBall(Vector3 direction)
+    public class BallHandler : MonoBehaviour
     {
-        m_velocity = direction * m_serveSpeed;
-        serving = true;
-    }
+        [SerializeField] private float m_serveSpeed = 2;
+        [SerializeField] private float m_serveHitSpeedBoostMod = 2;
+    
+        [SerializeField] private float m_speedUpVal = 1.1f;
 
-    void Update()
-    {
-        RaycastHit hitInfo;
-        if (Physics.BoxCast(transform.position, transform.localScale / 2, m_velocity
-            , out hitInfo, Quaternion.identity, m_velocity.magnitude * Time.deltaTime))
+        [SerializeField] private Vector3 m_startVelo;
+        [SerializeField] private bool m_debugUseStartVelo;
+
+        void Start()
         {
-            Endzone endZoneHit = hitInfo.collider.GetComponent<Endzone>();
-
-            if (endZoneHit != null)
-            {
-                endZoneHit.BallHit();
-                Destroy(gameObject);
-                return;
-            }
-            
-            PaddleHandler paddleHit = hitInfo.collider.GetComponent<PaddleHandler>();
-            bool hitIsOnPaddle = paddleHit != null;
-            
-            m_velocity = hitIsOnPaddle
-                ? paddleHit.GetBallBounceVectorFromHit(hitInfo, m_velocity) * m_speedUpVal * (serving ? m_serveHitSpeedBoostMod : 1)
-                        : HelperFunctions.ReflectVectorOnNormal(m_velocity, hitInfo.normal);
-            
-            serving = serving && !hitIsOnPaddle;
+            if (!m_debugUseStartVelo) return;
+            m_velocity = m_startVelo;
         }
+        
+        private Vector3 m_velocity;
+        private bool serving;
+    
+        public void ServeBall(Vector3 direction)
+        {
+            m_velocity = direction * m_serveSpeed;
+            serving = true;
+        }
+
+        void Update()
+        {
+            bool hitSomething;
+            float castDist = m_velocity.magnitude * Time.deltaTime;
+            do
+            {
+                RaycastHit hitInfo;
+                hitSomething = Physics.BoxCast(transform.position, transform.localScale / 2, m_velocity
+                    , out hitInfo, Quaternion.identity, castDist);
+                
+                if (hitSomething)
+                {
+                    Endzone endZoneHit = hitInfo.collider.GetComponent<Endzone>();
+
+                    if (endZoneHit != null)
+                    {
+                        endZoneHit.BallHit();
+                        Destroy(gameObject);
+                        return;
+                    }
+
+                    PaddleHandler paddleHit = hitInfo.collider.GetComponent<PaddleHandler>();
+                    bool hitIsOnPaddle = paddleHit != null;
+
+                    m_velocity = hitIsOnPaddle
+                        ? paddleHit.GetBallBounceVectorFromHit(hitInfo, m_velocity) * m_speedUpVal *
+                          (serving ? m_serveHitSpeedBoostMod : 1)
+                        : HelperFunctions.ReflectVectorOnNormal(m_velocity, hitInfo.normal);
+
+                    serving = serving && !hitIsOnPaddle;
+
+                    castDist = Mathf.Max(0, castDist - hitInfo.distance);
+                }
+            } while (hitSomething);
             
-        transform.position += m_velocity * Time.deltaTime;
+            
+            transform.position += m_velocity * Time.deltaTime;
+        }
     }
 }

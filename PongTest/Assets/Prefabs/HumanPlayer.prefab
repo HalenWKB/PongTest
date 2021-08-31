@@ -48,6 +48,11 @@ MonoBehaviour:
   m_paddle: {fileID: 7874501686964153197}
   m_scoreDisplay: {fileID: 0}
   m_name: 
+  m_leftKey: 119
+  m_rightKey: 115
+  m_aiReactionTimeMin: 0.05
+  m_aiReactionTimeMax: 0.2
+  m_aiReadInaccuracy: 1
 --- !u!1 &7874501686964153207
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +159,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c264deaa8c0df443b9818da8b6ffb87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_paddleSpeed: 25
+  m_paddleSpeed: 15
+  m_paddleSkewBallMod: 0.5
+  m_paddleMoveConstraintDist: 5
 --- !u!1 &8497015800211194113
 GameObject:
   m_ObjectHideFlags: 0

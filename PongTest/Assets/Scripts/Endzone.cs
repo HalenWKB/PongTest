@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Endzone : MonoBehaviour
-{
-    [SerializeField] private Player m_playerRef = null;
 
-    public void BallHit()
+namespace PlayerPaddles
+{
+    public class Endzone : MonoBehaviour
     {
-        Managers.Gameplay.SomebodiesEndzoneWasHit(m_playerRef);
+        [SerializeField] private Player m_playerRef = null;
+
+        public void BallHit()
+        {
+            Managers.Gameplay.SomebodiesEndzoneWasHit(m_playerRef);
+        }
     }
 }
