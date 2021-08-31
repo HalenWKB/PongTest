@@ -151,6 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd16153f095687248843e89221add117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_aiReactionTimeMin: 0.05
+  m_aiReactionTimeMax: 0.3
+  m_aiReadInaccuracy: 2
 --- !u!1 &80662909
 GameObject:
   m_ObjectHideFlags: 0
