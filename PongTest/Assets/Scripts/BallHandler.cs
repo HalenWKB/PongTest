@@ -18,10 +18,11 @@ public class BallHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, m_velocity, out hit, m_velocity.magnitude * Time.deltaTime))
+        RaycastHit hitInfo;
+        if (Physics.BoxCast(transform.position, transform.localScale / 2, m_velocity
+            , out hitInfo, Quaternion.identity, m_velocity.magnitude * Time.deltaTime))
         {
-            m_velocity = m_velocity - 2 * (Vector3.Dot(m_velocity, hit.normal)) * hit.normal;
+            m_velocity = m_velocity - 2 * (Vector3.Dot(m_velocity, hitInfo.normal)) * hitInfo.normal;
         }
             
         transform.position += m_velocity * Time.deltaTime;

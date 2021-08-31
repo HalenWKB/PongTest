@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844e113aaea48b4e8b7698f358718bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_startVelo: {x: 2, y: 1, z: 0}
+  m_startVelo: {x: 2, y: -2, z: 0}
 --- !u!23 &1262627709
 MeshRenderer:
   m_ObjectHideFlags: 0
