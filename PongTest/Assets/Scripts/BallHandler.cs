@@ -30,8 +30,8 @@ public class BallHandler : MonoBehaviour
                 Destroy(gameObject);
                 return;
             }
-            
-            m_velocity = m_velocity - 2 * (Vector3.Dot(m_velocity, hitInfo.normal)) * hitInfo.normal;
+
+            m_velocity = HelperFunctions.ReflectVectorOnNormal(m_velocity, hitInfo.normal);
         }
             
         transform.position += m_velocity * Time.deltaTime;

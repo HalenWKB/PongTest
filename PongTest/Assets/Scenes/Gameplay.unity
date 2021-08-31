@@ -121,16 +121,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &13411680 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7874501686964153207, guid: 49b9da4011a31704b9c05cef26921b8d,
+    type: 3}
+  m_PrefabInstance: {fileID: 326203945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &13411681 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7874501686964153197, guid: 49b9da4011a31704b9c05cef26921b8d,
     type: 3}
   m_PrefabInstance: {fileID: 326203945}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 13411680}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c264deaa8c0df443b9818da8b6ffb87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &13411687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13411680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd16153f095687248843e89221add117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &80662909
@@ -278,6 +296,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: P2
       objectReference: {fileID: 0}
+    - target: {fileID: 479829755307940188, guid: 49b9da4011a31704b9c05cef26921b8d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7874501686964153194, guid: 49b9da4011a31704b9c05cef26921b8d,
         type: 3}
       propertyPath: m_leftKey
@@ -287,6 +310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_rightKey
       value: 273
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874501686964153194, guid: 49b9da4011a31704b9c05cef26921b8d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7874501686964153197, guid: 49b9da4011a31704b9c05cef26921b8d,
         type: 3}
@@ -450,7 +478,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.6
+  m_fontSize: 53.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1012,7 +1040,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84.85
+  m_fontSize: 71.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1366,7 +1394,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.6
+  m_fontSize: 53.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

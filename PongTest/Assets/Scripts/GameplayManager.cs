@@ -12,6 +12,16 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private Transform m_ballSpawn = null;
     [SerializeField] private int m_scoreToWin = 11;
     [SerializeField] private TextMeshProUGUI m_announcementText = null;
+
+    private BallHandler m_ball;
+    
+    public Vector3 GetBallPos()
+    {
+        if (m_ball != null)
+            return m_ball.transform.position;
+        else
+            return m_ballSpawn.position;
+    }
     
     void Start()
     {
@@ -49,7 +59,7 @@ public class GameplayManager : MonoBehaviour
 
     void SpawnBall()
     {
-        Instantiate(m_ballPrefab, m_ballSpawn.position, m_ballSpawn.rotation);
+        m_ball = Instantiate(m_ballPrefab, m_ballSpawn.position, m_ballSpawn.rotation).GetComponent<BallHandler>();
     }
 
     void EndGame()
