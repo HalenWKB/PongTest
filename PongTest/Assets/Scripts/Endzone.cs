@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Endzone : MonoBehaviour
 {
-    [SerializeField] private PaddleHandler m_paddleRef = null;
+    [SerializeField] private Player m_playerRef = null;
 
     public void BallHit()
     {
-        Managers.Gameplay.SomebodiesEndzoneWasHit(m_paddleRef);
+        Managers.Gameplay.SomebodiesEndzoneWasHit(m_playerRef);
     }
 }

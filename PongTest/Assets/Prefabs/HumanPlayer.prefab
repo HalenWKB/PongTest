@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9094054356354076375}
+  - component: {fileID: 8363928435839342970}
   m_Layer: 0
   m_Name: HumanPlayer
   m_TagString: Untagged
@@ -32,6 +33,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8363928435839342970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479829755307940188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168ed578526c25746b2b49ade439c5c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_paddle: {fileID: 7874501686964153197}
+  m_scoreDisplay: {fileID: 0}
+  m_name: 
 --- !u!1 &7874501686964153207
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,7 +61,6 @@ GameObject:
   - component: {fileID: 7874501686964153193}
   - component: {fileID: 7874501686964153206}
   - component: {fileID: 7874501686964153197}
-  - component: {fileID: 7874501686964153194}
   m_Layer: 0
   m_Name: Paddle
   m_TagString: Untagged
@@ -140,21 +155,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_paddleSpeed: 25
-  m_scoreDisplay: {fileID: 0}
---- !u!114 &7874501686964153194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7874501686964153207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9294181c863fa3641aaff5afc49c2567, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_leftKey: 119
-  m_rightKey: 115
 --- !u!1 &8497015800211194113
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,4 +212,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5b02db70b9112847901d643830a6f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_paddleRef: {fileID: 7874501686964153197}
+  m_playerRef: {fileID: 8363928435839342970}

@@ -7,12 +7,19 @@ public class AIPaddleInput : MonoBehaviour
 {
     private PaddleHandler m_paddle;
 
-    [SerializeField] private float m_aiReactionTimeMin = 0.2f;
-    [SerializeField] private float m_aiReactionTimeMax = 0.6f;
+    private float m_aiReactionTimeMin = 0.05f;
+    private float m_aiReactionTimeMax = 0.02f;
 
-    [SerializeField] private float m_aiReadInaccuracy = 2f;
+    private float m_aiReadInaccuracy = 1f;
 
     private bool m_currentInputIsLeft = true;
+
+    public void SetAIBehaviourValues(float minReact, float maxReact, float inaccuracy)
+    {
+        m_aiReactionTimeMin = minReact;
+        m_aiReactionTimeMax = maxReact;
+        m_aiReadInaccuracy = inaccuracy;
+    }
     
     void Start()
     {

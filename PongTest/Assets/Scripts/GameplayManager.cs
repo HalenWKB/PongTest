@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
-    [SerializeField] private List<PaddleHandler> m_players = null;
+    [SerializeField] private List<Player> m_players = null;
     [SerializeField] private GameObject m_ballPrefab = null;
     [SerializeField] private Transform m_ballSpawn = null;
     [SerializeField] private int m_scoreToWin = 11;
     [SerializeField] private TextMeshProUGUI m_announcementText = null;
-
+    
     private BallHandler m_ball;
     
     public Vector3 GetBallPos()
@@ -26,11 +26,21 @@ public class GameplayManager : MonoBehaviour
     void Start()
     {
         Managers.Instance.GameplaySignIn(this);
+        SetPlayersBasedOnGameMode();
         StartCoroutine( WaitWithTextBeforeAction("Get Ready!",SpawnBall));
     }
 
+    void SetPlayersBasedOnGameMode()
+    {
+        GameMode mode = Managers.Mode.GetGameMode();
+        
+        m_players[0].SetInputMode_HumanOrAI(mode != GameMode.EvE);
+        m_players[1].SetInputMode_HumanOrAI(mode == GameMode.PvP);
+        
+        if (m_players.Count > 2) Debug.LogWarning("TODO 3+ player functionality");
+    }
     
-    public void SomebodiesEndzoneWasHit(PaddleHandler paddleHit)
+    public void SomebodiesEndzoneWasHit(Player paddleHit)
     {
         string whoScored = "";
         int topScore = 0;
